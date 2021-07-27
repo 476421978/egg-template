@@ -92,12 +92,12 @@
     "port": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js",
     "username": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js",
     "password": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js",
-    "timezone": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.default.js",
+    "timezone": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js",
     "define": {
-      "freezeTableName": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.default.js",
-      "underscored": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.default.js",
-      "timestamps": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.default.js",
-      "paranoid": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.default.js"
+      "freezeTableName": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js",
+      "underscored": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js",
+      "timestamps": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js",
+      "paranoid": "/Users/cai/Desktop/磅磅项目/代码开发过程/egg-template/config/config.local.js"
     }
   },
   "signInfo": {
