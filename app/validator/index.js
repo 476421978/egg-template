@@ -1,3 +1,8 @@
+/**
+ *  使用方法
+ *  const params = this.ctx.JoiValidate('GetUserIdentity')
+ *  if (!params) return
+ */
 module.exports = (app) => {
   const Joi = app.Joi
   return {

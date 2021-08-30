@@ -29,6 +29,16 @@ module.exports = {
     // console.log('参数错误failParams-->>>', param)
   },
   /**
+   * 无权限错误
+   */
+  noAccess(param) {
+    this.body = {
+      code: 403,
+      result: param
+    }
+    // console.log('参数错误failParams-->>>', param)
+  },
+  /**
    * egg-joi
    */
   JoiValidate(val) {
