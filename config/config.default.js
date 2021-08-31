@@ -42,6 +42,7 @@ module.exports = appInfo => {
     signInfo: {
       minaSecretTitle: 'S_MINA_TOKEN_2021',
     },
+    wechatInfo: require('./lib/wechatInfo.js')
   };
 
   // csrf 安全
