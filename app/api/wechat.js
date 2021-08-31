@@ -1,5 +1,5 @@
-'use strict'
-module.exports = ({POST, GET}) => ({
+'use strict';
+module.exports = ({ POST, GET }) => ({
   // code获取session
   MinaCode2Session: (...data) => GET('https://api.weixin.qq.com/sns/jscode2session', ...data),
 
@@ -10,6 +10,6 @@ module.exports = ({POST, GET}) => ({
   SendMinaSubscribe: (...data) => POST('https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=', ...data),
 
   // JSAPI
-  GetPrePayId: (...data) => POST('https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi', ...data)
-})
+  GetPrePayId: (...data) => POST('https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi', ...data),
+});
 

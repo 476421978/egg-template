@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-const Controller = require('egg').Controller;
+const Controller = require('egg').Controller
 
 class HomeController extends Controller {
   // 登录签发token
   async Login() {
-    const { ctx, app } = this;
-    const { jwt } = app;
+    const { ctx, app } = this
+    const { jwt } = app
     try {
-      let minaToken = jwt.sign(
+      const minaToken = jwt.sign(
         {
           account: 'mina',
         },
@@ -16,12 +16,12 @@ class HomeController extends Controller {
         {
           expiresIn: '24h',
         }
-      );
-      ctx.success(minaToken);
+      )
+      ctx.success(minaToken)
     } catch (error) {
-      ctx.fail(error);
+      ctx.fail(error)
     }
   }
 }
 
-module.exports = HomeController;
+module.exports = HomeController

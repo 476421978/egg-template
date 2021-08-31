@@ -1,46 +1,34 @@
+'use strict'
 module.exports = {
-  /**
-   * 通用成功接口
-   */
+  // 通用成功接口
   success(param) {
     this.body = {
       code: 200,
-      result: param
+      result: param,
     }
   },
-  /**
-   * 通用代码逻辑错误
-   */
+  // 通用代码逻辑错误
   fail(param) {
     this.body = {
       code: 500,
-      result: param
+      result: param,
     }
-    // console.log('fail-->>>', param)
   },
-  /**
-   * 通用参数错误
-   */
+  // 通用参数错误
   failParams(param) {
     this.body = {
       code: 400,
-      result: param
+      result: param,
     }
-    // console.log('参数错误failParams-->>>', param)
   },
-  /**
-   * 无权限错误
-   */
+  // 无权限错误
   noAccess(param) {
     this.body = {
       code: 403,
-      result: param
+      result: param,
     }
-    // console.log('参数错误failParams-->>>', param)
   },
-  /**
-   * egg-joi
-   */
+  // egg-joi
   JoiValidate(val) {
     try {
       return this.validate(this.app.validator.index[val](this.request.body)).value
@@ -48,5 +36,5 @@ module.exports = {
       this.failParams(error)
       return false
     }
-  }
+  },
 }

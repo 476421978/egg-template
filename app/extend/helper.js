@@ -1,49 +1,35 @@
-const CryptoJS = require('../utils/aes.js') //引用AES源码js
-const key = CryptoJS.enc.Utf8.parse('0102030405060708') //十六位十六进制数作为秘钥
-const iv = CryptoJS.enc.Utf8.parse('0102030405060708') //十六位十六进制数作为秘钥偏移量
+'use strict'
+const CryptoJS = require('crypto-js') // 引用AES源码js
+const key = CryptoJS.enc.Utf8.parse('0102030405060708') // 十六位十六进制数作为秘钥
+const iv = CryptoJS.enc.Utf8.parse('0102030405060708') // 十六位十六进制数作为秘钥偏移量
+const crypto = require('crypto')
 
 module.exports = {
-  /**
-   * aes 解密方法
-   */
+  // aes 解密方法
   AesDecrypt(word) {
-    let encryptedHexStr = CryptoJS.enc.Hex.parse(word)
-    let srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr)
-    let decrypt = CryptoJS.AES.decrypt(srcs, key, {
-      iv: iv,
+    const encryptedHexStr = CryptoJS.enc.Hex.parse(word)
+    const srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr)
+    const decrypt = CryptoJS.AES.decrypt(srcs, key, {
+      iv,
       mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      padding: CryptoJS.pad.Pkcs7,
     })
-    let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8)
+    const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8)
     return decryptedStr.toString()
   },
-  /**
-   * aes 加密方法
-   */
+  // aes 加密方法
   AesEncrypt(word) {
-    let srcs = CryptoJS.enc.Utf8.parse(word)
-    let encrypted = CryptoJS.AES.encrypt(srcs, key, {
-      iv: iv,
+    const srcs = CryptoJS.enc.Utf8.parse(word)
+    const encrypted = CryptoJS.AES.encrypt(srcs, key, {
+      iv,
       mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      padding: CryptoJS.pad.Pkcs7,
     })
     return encrypted.ciphertext.toString().toUpperCase()
   },
 
-  /**
-   * base64 加密方法
-   */
-  Base64Encode(val) {
-    let str = CryptoJS.enc.Utf8.parse(val)
-    let base64 = CryptoJS.enc.Base64.stringify(str)
-    return base64
+  // SHA256-RSA加密后转base64
+  async sha256WithRsa(data) {
+    return crypto.createSign('RSA-SHA256').update(data).sign('密钥', 'base64')
   },
-
-  /**
-   * base64 解密方法
-   */
-  Base64Decode(val) {
-    let words = CryptoJS.enc.Base64.parse(val)
-    return words.toString(CryptoJS.enc.Utf8)
-  }
 }

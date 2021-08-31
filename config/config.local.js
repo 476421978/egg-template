@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-module.exports = (appInfo) => {
+module.exports = appInfo => {
   /**
    * built-in config
    * @type {Egg.EggAppConfig}
@@ -12,13 +12,13 @@ module.exports = (appInfo) => {
         'zh-cn': {},
       },
       throw: true, // throw immediately when capture exception
-      throwHandle: (error) => {
+      throwHandle: error => {
         return error;
       }, // error message format when throw is true
-      errorHandle: (error) => {
+      errorHandle: error => {
         return error;
       }, // error message format when throw is false
-      resultHandle: (result) => {
+      resultHandle: result => {
         return result;
       },
     },
@@ -29,7 +29,7 @@ module.exports = (appInfo) => {
 
   // add your middleware config here
   // 开启全局中间件
-  config.middleware = ['bodyAes'];
+  config.middleware = [ 'bodyAes' ];
 
   // add your user config here
   const userConfig = {
@@ -72,7 +72,7 @@ module.exports = (appInfo) => {
     // more sequelize options
     timezone: '+08:00', // 使用东八区 慢几小时就加几小时，快则减
     define: {
-      //使用自己配置的表名，避免sequelize自动将表名转换为复数
+      // 使用自己配置的表名，避免sequelize自动将表名转换为复数
       freezeTableName: true,
       // 字段以下划线（_）来分割（默认是驼峰命名风格）
       underscored: true,
