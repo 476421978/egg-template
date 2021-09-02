@@ -25,5 +25,25 @@ module.exports = {
     })
     return encrypted.ciphertext.toString().toUpperCase()
   },
+  /**
+   * 解密微信敏感信息
+   * 手机号
+   * open_id
+   */
+  async WechatDecryptInfo(encryptedData, iv, code) {
+    const { appId, appScripts } = this.app.config.wechatInfo
+    const result = await wechatAPI.MinaCode2Session({
+      appid: appId,
+      secret: appScripts,
+      js_code: code,
+      grant_type: 'authorization_code'
+    })
+    const pc = new WXBizDataCrypt(appId, result.session_key)
+    const res = pc.decryptData(encryptedData, iv)
+    return {
+      ...res,
+      open_id: result.openid
+    }
+  },
   WechatPay: require('./wechatPay')
 }

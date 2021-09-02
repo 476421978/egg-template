@@ -1,36 +1,42 @@
 # egg-template
 
-#### 介绍
-egg后台模版
+### 目前主要内容
 
-#### 软件架构
-软件架构说明
+egg + mysql + sequelize
 
+### 扩展文件
 
-#### 安装教程
+app/extend
 
-1.  git clone https://gitee.com/hlgshare/egg-template.git
-2.  修改config.default.js 中的mysql配置信息包括mysql数据库，egg-sequelize
-3.  app.js选择一个app.model.sync同步model的表单到数据库
+> context.js 请求状态码等
+> helper.js 公用方法
+> request.js 封装 sequelize 常用方法
 
-#### 使用说明
+### 第三方插件
 
-1.  npm install
-2.  npm run dev
+app/utils/\*
 
-#### 参与贡献
+> WXBizDataCrypt.js 微信官方 解密数据
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+### 字段验证
 
+app/validator
 
-#### 特技
+### 静态配置文件 在 config.\* 中的 const userConfig 暴露
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+config/lib
+
+### 根目录下 public 为默认静态资源目录
+
+### test 单元测试
+
+### 安装教程
+
+git clone https://gitee.com/hlgshare/egg-template.git
+修改 config.default.js 中的 mysql 配置信息 config.sequelize
+app.js 选择一个 app.model.sync 同步 model 的表单到数据库
+
+### 使用说明
+
+npm install
+npm run dev
