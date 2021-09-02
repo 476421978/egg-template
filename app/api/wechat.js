@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = ({ POST, GET, WechatPayPost }) => ({
   // code获取session
   MinaCode2Session: (...data) => GET('https://api.weixin.qq.com/sns/jscode2session', ...data),
@@ -7,9 +7,10 @@ module.exports = ({ POST, GET, WechatPayPost }) => ({
   GetAccessToken: (...data) => GET('https://api.weixin.qq.com/cgi-bin/token', ...data),
 
   // 发送小程序订阅消息
-  SendMinaSubscribe: (...data) => POST('https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=', ...data),
+  SendMinaSubscribe: (...data) =>
+    POST('https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=', ...data),
 
   // JSAPI
-  GetPrePayId: (data, authorization) => WechatPayPost('https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi', data, authorization),
-});
-
+  GetPrePayId: (data, authorization) =>
+    WechatPayPost('https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi', data, authorization)
+})
