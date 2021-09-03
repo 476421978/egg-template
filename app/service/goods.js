@@ -11,6 +11,11 @@ class GoodsServer extends Service {
     }
     props.request.commonServer(this)
   }
+
+  // 自定义方法
+  async findOtherOne() {
+    return '123'
+  }
 }
 
 module.exports = GoodsServer

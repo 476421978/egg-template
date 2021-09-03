@@ -4,28 +4,28 @@ module.exports = {
   success(param) {
     this.body = {
       code: 200,
-      result: param,
+      result: param
     }
   },
   // 通用代码逻辑错误
   fail(param) {
     this.body = {
       code: 500,
-      result: param,
+      result: param
     }
   },
   // 通用参数错误
   failParams(param) {
     this.body = {
       code: 400,
-      result: param,
+      result: param
     }
   },
   // 无权限错误
   noAccess(param) {
     this.body = {
       code: 403,
-      result: param,
+      result: param
     }
   },
   // egg-joi
@@ -36,5 +36,5 @@ module.exports = {
       this.failParams(error)
       return false
     }
-  },
+  }
 }

@@ -1,6 +1,5 @@
 'use strict'
 const crypto = require('crypto')
-const fs = require('fs')
 const wechatAPI = require('../../api').wechat
 const stringRandom = require('string-random')
 const moment = require('moment')

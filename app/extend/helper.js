@@ -2,6 +2,8 @@
 const CryptoJS = require('crypto-js') // 引用AES源码js
 const key = CryptoJS.enc.Utf8.parse('0102030405060708') // 十六位十六进制数作为秘钥
 const iv = CryptoJS.enc.Utf8.parse('0102030405060708') // 十六位十六进制数作为秘钥偏移量
+const API = require('../api/index')
+const WXBizDataCrypt = require('../utils/wechat/WXBizDataCrypt')
 module.exports = {
   // aes 解密方法
   AesDecrypt(word) {
@@ -25,14 +27,10 @@ module.exports = {
     })
     return encrypted.ciphertext.toString().toUpperCase()
   },
-  /**
-   * 解密微信敏感信息
-   * 手机号
-   * open_id
-   */
+  // 解密微信敏感用户信息 手机号/open_id
   async WechatDecryptInfo(encryptedData, iv, code) {
     const { appId, appScripts } = this.app.config.wechatInfo
-    const result = await wechatAPI.MinaCode2Session({
+    const result = await API.wechat.MinaCode2Session({
       appid: appId,
       secret: appScripts,
       js_code: code,
