@@ -29,7 +29,7 @@ module.exports = appInfo => {
 
   // add your middleware config here
   // 开启全局中间件
-  config.middleware = [ 'bodyAes' ];
+  // config.middleware = [ 'bodyAes' ];
 
   // add your user config here
   const userConfig = {

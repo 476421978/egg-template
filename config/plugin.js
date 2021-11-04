@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 /** @type Egg.EggPlugin */
 // module.exports = {
 //   // had enabled by egg
@@ -9,26 +9,31 @@
 
 exports.joi = {
   enable: true,
-  package: 'egg-joi',
-};
+  package: 'egg-joi'
+}
 
 exports.routerPlus = {
   enable: true,
-  package: 'egg-router-plus',
-};
+  package: 'egg-router-plus'
+}
+
+exports.cors = {
+  enable: true,
+  package: 'egg-cors'
+}
 
 // 签发token
 exports.jwt = {
   enable: true,
-  package: 'egg-jwt',
-};
+  package: 'egg-jwt'
+}
 
 exports.sequelize = {
   enable: true,
-  package: 'egg-sequelize',
-};
+  package: 'egg-sequelize'
+}
 
 exports.mysql = {
   enable: true,
-  package: 'egg-mysql',
-};
+  package: 'egg-mysql'
+}

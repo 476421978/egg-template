@@ -1,6 +1,6 @@
-'use strict';
-const path = require('path');
-module.exports = appInfo => {
+'use strict'
+const path = require('path')
+module.exports = (appInfo) => {
   /**
    * built-in config
    * @type {Egg.EggAppConfig}
@@ -9,35 +9,35 @@ module.exports = appInfo => {
     joi: {
       options: {},
       locale: {
-        'zh-cn': {},
+        'zh-cn': {}
       },
       throw: true, // throw immediately when capture exception
-      throwHandle: error => {
-        return error;
+      throwHandle: (error) => {
+        return error
       }, // error message format when throw is true
-      errorHandle: error => {
-        return error;
+      errorHandle: (error) => {
+        return error
       }, // error message format when throw is false
-      resultHandle: result => {
-        return result;
-      },
-    },
-  });
+      resultHandle: (result) => {
+        return result
+      }
+    }
+  })
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1626837537627_6666';
+  config.keys = appInfo.name + '_1626837537627_6666'
 
   // add your middleware config here
   // 开启全局中间件
-  config.middleware = [ 'bodyAes' ];
+  // config.middleware = ['bodyAes']
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
     signInfo: {
-      minaSecretTitle: 'S_MINA_TOKEN_2021',
-    },
-  };
+      minaSecretTitle: 'S_MINA_TOKEN_2021'
+    }
+  }
 
   config.mysql = {
     // 单数据库信息配置
@@ -51,13 +51,13 @@ module.exports = appInfo => {
       // 密码
       password: '123456',
       // 数据库名
-      database: 'sys',
+      database: 'sys'
     },
     // 是否加载到 app 上，默认开启
     app: true,
     // 是否加载到 agent 上，默认关闭
-    agent: false,
-  };
+    agent: false
+  }
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
@@ -81,9 +81,9 @@ module.exports = appInfo => {
       // Sequelize 支持 paranoid 表的概念.
       // 一个 paranoid 表是一个被告知删除记录时不会真正删除它的表.
       // 反而一个名为 deletedAt 的特殊列会将其值设置为该删除请求的时间戳
-      paranoid: true,
-    },
-  };
+      paranoid: true
+    }
+  }
 
   config.logger = {
     level: 'WARN', // 避免记录数据库执行语句
@@ -92,11 +92,11 @@ module.exports = appInfo => {
     coreLogName: 'egg-web.log',
     agentLogName: 'egg-agent.log',
     errorLogName: 'common-error.log',
-    outputJSON: true,
-  };
+    outputJSON: true
+  }
 
   return {
     ...config,
-    ...userConfig,
-  };
-};
+    ...userConfig
+  }
+}

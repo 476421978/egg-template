@@ -9,11 +9,12 @@ const excepts = [
 module.exports = options => {
   return async function(ctx, next) {
     const { url, headers, body } = ctx.request;
+    
     // 排除特定路由
-    if (excepts.includes(url)) {
-      await next();
-      return;
-    }
+    // if (excepts.includes(url)) {
+    //   await next();
+    //   return;
+    // }
 
     // 解密接收数据body
 
