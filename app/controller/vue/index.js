@@ -8,7 +8,11 @@ class Vue3IndexController extends Controller {
   async VueLogin() {
     const { ctx, app } = this
     try {
-      ctx.success('登陆成功')
+      const params = this.ctx.JoiVue('Login')
+      ctx.success({
+        ...params,
+        web_auth_arr: ['home']
+      })
     } catch (error) {
       ctx.fail(error)
     }

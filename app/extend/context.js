@@ -28,10 +28,19 @@ module.exports = {
       result: param
     }
   },
-  // egg-joi
-  JoiValidate(val) {
+  // common
+  JoiCom(val) {
     try {
-      return this.validate(this.app.validator.index[val](this.request.body)).value
+      return this.validate(this.app.validator.commonVfy[val](this.request.body)).value
+    } catch (error) {
+      this.failParams(error)
+      return false
+    }
+  },
+  // vue
+  JoiVue(val) {
+    try {
+      return this.validate(this.app.validator.vueVfy[val](this.request.body)).value
     } catch (error) {
       this.failParams(error)
       return false
