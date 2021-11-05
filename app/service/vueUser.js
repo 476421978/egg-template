@@ -1,13 +1,13 @@
 'use strict'
 const Service = require('egg').Service
-class GoodsServer extends Service {
+class VueUserServer extends Service {
   // 构造函数
   constructor(props) {
     super(props)
-    const { Goods } = this.app.model
+    const { VueUser } = this.app.model
     // 常用配置
     this.state = {
-      model: Goods
+      model: VueUser
     }
     props.request.commonServer(this)
   }
@@ -18,4 +18,4 @@ class GoodsServer extends Service {
   }
 }
 
-module.exports = GoodsServer
+module.exports = VueUserServer

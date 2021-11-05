@@ -34,13 +34,19 @@ module.exports = (appInfo) => {
 
   // add your middleware config here
   // 开启全局中间件
-  // config.middleware = ['bodyAes']
+  // config.middleware = ['vueTokenCheck']
+  // // 指定匹配路由
+  // config.vueTokenCheck = {
+  //   match: ['/vue']
+  // }
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
     signInfo: {
-      minaSecretTitle: 'S_MINA_TOKEN_2021'
+      minaSecretTitle: 'S_MINA_TOKEN_2021',
+      vueJwtSecret: 'VUE_TOKEN_2021',
+      vueJwtSecretRef: 'VUE_TOKEN_2021_REFRESH'
     },
     wechatInfo: require('./lib/wechatInfo.js')
   }
@@ -60,7 +66,7 @@ module.exports = (appInfo) => {
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-    database: 'sys',
+    database: 'egg_template',
     host: '127.0.0.1',
     port: 3306,
     username: 'root',

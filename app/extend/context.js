@@ -28,22 +28,19 @@ module.exports = {
       result: param
     }
   },
+  // 请求头错误
+  headErr(param) {
+    this.body = {
+      code: 405,
+      result: param
+    }
+  },
   // common
   JoiCom(val) {
-    try {
-      return this.validate(this.app.validator.commonVfy[val](this.request.body)).value
-    } catch (error) {
-      this.failParams(error)
-      return false
-    }
+    return this.validate(this.app.validator.commonVfy[val](this.request.body)).value
   },
   // vue
   JoiVue(val) {
-    try {
-      return this.validate(this.app.validator.vueVfy[val](this.request.body)).value
-    } catch (error) {
-      this.failParams(error)
-      return false
-    }
+    return this.validate(this.app.validator.vueVfy[val](this.request.body)).value
   }
 }
