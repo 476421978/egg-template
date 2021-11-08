@@ -37,7 +37,15 @@ module.exports = (app) => {
       // 查询用户
       getUser: (body) => {
         return Joi.object(body).keys({
-          account: Joi.string().required()
+          account: Joi.string()
+        })
+      },
+      // 获取用户列表
+      getUserList: (body) => {
+        return Joi.object(body).keys({
+          pages_size: Joi.number(),
+          pages_num: Joi.number(),
+          search_txt: Joi.string().allow('')
         })
       }
     }

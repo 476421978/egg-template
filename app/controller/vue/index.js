@@ -7,33 +7,25 @@ class Vue3IndexController extends Controller {
   // login
   async VueLogin() {
     const { ctx, app, service } = this
-    const { jwt, config } = app
-    const { jwtServer } = service
+    const { config } = app
+    const { jwtServer, vueUser } = service
+    const params = this.ctx.JoiVue('Login')
+
     try {
-      const params = this.ctx.JoiVue('Login')
+      const user = await vueUser.login(params)
+      if (!user) throw '找不到用户'
 
-      // const res = await
+      const Token = jwtServer.createToken(user.id, config.vueJwt.secret)
 
-      const Token = jwtServer.createToken(params.account)
-
-      // const RefToken = jwt.sign(
-      //   {
-      //     user_id_ref: 'vue3Ref'
-      //   },
-      //   config.signInfo.vueJwtSecretRef,
-      //   {
-      //     expiresIn: '24h'
-      //   }
-      // )
+      const RefToken = jwtServer.createToken(user.id, config.vueJwt.secret, 86400)
 
       ctx.success({
         ...params,
-        web_auth_arr: ['home'],
+        web_auth_arr: ['home', 'user'],
         token: Token,
         refToken: RefToken
       })
     } catch (error) {
-      console.log('error-->>', error)
       ctx.fail(error)
     }
   }
@@ -41,25 +33,9 @@ class Vue3IndexController extends Controller {
   // 重新刷新token接口
   async UpdateToken() {
     const { ctx } = this
-    const Token = jwt.sign(
-      {
-        account: 'vue3'
-      },
-      app.config.signInfo.vueJwtSecret,
-      {
-        expiresIn: '1h'
-      }
-    )
 
-    const RefToken = jwt.sign(
-      {
-        account: 'vue3Ref'
-      },
-      app.config.signInfo.vueJwtSecretRef,
-      {
-        expiresIn: '24h'
-      }
-    )
+    const Token = jwtServer.createToken(params.account, config.vueJwt.secret)
+    const RefToken = jwtServer.createToken(params.account, config.vueJwt.secret, 86400)
 
     ctx.success({
       token: Token,
@@ -70,7 +46,8 @@ class Vue3IndexController extends Controller {
   // 获取静态数据
   async GetStaticData() {
     const { ctx } = this
-    ctx.success('静态数据')
+    const userId = ctx.vueUserId
+    ctx.success(`静态数据UserId:${userId}`)
   }
 
   // ======================= 用户 增删改查 =======================
@@ -80,6 +57,11 @@ class Vue3IndexController extends Controller {
     const params = ctx.JoiVue('createUser')
     if (!params) return
     try {
+      const user = await vueUser.count({
+        account: params.account
+      })
+      if (user) throw '账号已存在'
+
       const res = await vueUser.create(params)
       ctx.success(res)
     } catch (error) {
@@ -104,7 +86,6 @@ class Vue3IndexController extends Controller {
     const { ctx, service } = this
     const { vueUser } = service
     const params = this.ctx.JoiVue('updateUser')
-    console.log('params-->>', params)
     if (!params) return
     try {
       const res = await vueUser.update(params, {
@@ -118,13 +99,40 @@ class Vue3IndexController extends Controller {
 
   async GetUser() {
     const { ctx, service } = this
-    const { jwtServer } = service
+    const { vueUser } = service
     const params = this.ctx.JoiVue('getUser')
     if (!params) return
     try {
       const res = await vueUser.findOne(params)
       ctx.success(res)
     } catch (error) {}
+  }
+
+  async GetUserList() {
+    const { ctx, service, app } = this
+    const { vueUser } = service
+    const { Op } = app.Sequelize
+
+    const params = this.ctx.JoiVue('getUserList')
+    if (!params) return
+
+    try {
+      const res = await vueUser.findAndCountAll(
+        {
+          account: {
+            [Op.like]: `%${params.search_txt}%`
+          }
+        },
+        {
+          offset: (params.pages_size - 1) * params.pages_num,
+          limit: params.pages_num
+        }
+      )
+
+      ctx.success(res)
+    } catch (error) {
+      console.log('error-->>>>', error)
+    }
   }
 }
 

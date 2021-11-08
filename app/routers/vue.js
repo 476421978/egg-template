@@ -16,4 +16,5 @@ module.exports = ({ router, controller, middleware }) => {
   post('/delete_user', index.DeleteUser)
   post('/update_user', index.UpdateUser)
   post('/get_user', index.GetUser)
+  post('/get_user_list', index.GetUserList)
 }

@@ -34,19 +34,21 @@ module.exports = (appInfo) => {
 
   // add your middleware config here
   // 开启全局中间件
-  // config.middleware = ['vueTokenCheck']
-  // // 指定匹配路由
-  // config.vueTokenCheck = {
-  //   match: ['/vue']
-  // }
+  config.middleware = ['vueTokenCheck']
+  // 指定匹配路由
+  config.vueTokenCheck = {
+    match: ['/vue']
+  }
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
-    signInfo: {
-      minaSecretTitle: 'S_MINA_TOKEN_2021',
-      vueJwtSecret: 'VUE_TOKEN_2021',
-      vueJwtSecretRef: 'VUE_TOKEN_2021_REFRESH'
+    minaJwt: {
+      secret: 'S_MINA_TOKEN_2021'
+    },
+    vueJwt: {
+      secret: 'VUE_TOKEN_2021',
+      secretRef: 'VUE_TOKEN_2021_REFRESH'
     },
     wechatInfo: require('./lib/wechatInfo.js')
   }

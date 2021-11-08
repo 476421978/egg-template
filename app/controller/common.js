@@ -13,7 +13,7 @@ class HomeController extends Controller {
         {
           account: 'mina'
         },
-        app.config.signInfo.minaSecretTitle,
+        app.config.minaJwt.secret,
         {
           expiresIn: '24h'
         }

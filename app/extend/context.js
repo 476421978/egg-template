@@ -10,14 +10,14 @@ module.exports = {
   // 通用代码逻辑错误
   fail(param) {
     this.body = {
-      code: 500,
+      code: 400,
       result: param
     }
   },
   // 通用参数错误
   failParams(param) {
     this.body = {
-      code: 400,
+      code: 416,
       result: param
     }
   },
@@ -31,7 +31,7 @@ module.exports = {
   // 请求头错误
   headErr(param) {
     this.body = {
-      code: 405,
+      code: 412,
       result: param
     }
   },

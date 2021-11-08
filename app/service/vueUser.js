@@ -12,9 +12,15 @@ class VueUserServer extends Service {
     props.request.commonServer(this)
   }
 
-  // 自定义方法
-  async findOtherOne() {
-    return '123'
+  // 登录
+  async login(params) {
+    const { ctx, app, service } = this
+    const { vueUser } = service
+    const user = await vueUser.findOne({
+      account: params.account,
+      password: params.password
+    })
+    return user
   }
 }
 

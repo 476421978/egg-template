@@ -23,7 +23,7 @@ module.exports = {
       })
     }
     // // ======================== 查 ========================
-    self.findOne = (Where = {}, Include = [], Order = [], args = {}) => {
+    self.findOne = (Where = {}, args = {}, Include = [], Order = []) => {
       const params = {
         where: Where,
         include: Include.length ? Include : defaultInclude,
@@ -32,7 +32,7 @@ module.exports = {
       }
       return defaultModel.findOne(params)
     }
-    self.findAll = (Where = {}, Include = [], Order = [], args = {}) => {
+    self.findAll = (Where = {}, args = {}, Include = [], Order = []) => {
       const params = {
         where: Where,
         include: Include.length ? Include : defaultInclude,
@@ -41,12 +41,12 @@ module.exports = {
       }
       return defaultModel.findAll(params)
     }
-    // // 方法使用提供的主键从表中仅获得一个条目
+    // 方法使用提供的主键从表中仅获得一个条目
     self.findByPk = (val) => {
       return defaultModel.findByPk(val)
     }
-    // // 分页
-    self.findAndCountAll = (Where = {}, Include = [], Order = [], args = { offset: 0, limit: 10 }) => {
+    // 分页
+    self.findAndCountAll = (Where = {}, args = { offset: 0, limit: 10 }, Include = [], Order = []) => {
       const params = {
         where: Where,
         include: Include.length ? Include : defaultInclude,
