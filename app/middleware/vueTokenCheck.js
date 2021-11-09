@@ -15,6 +15,10 @@ module.exports = (options) => {
       return
     }
 
+    // console.log('url-->>>', url)
+    // console.log('headers-->>>', headers)
+    // console.log('body-->>>', body)
+
     try {
       // 检查token 获取用户Id
       const token = headers['token']

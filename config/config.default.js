@@ -34,8 +34,11 @@ module.exports = (appInfo) => {
 
   // add your middleware config here
   // 开启全局中间件
-  config.middleware = ['vueTokenCheck']
+  config.middleware = ['vueAes', 'vueTokenCheck']
   // 指定匹配路由
+  config.vueAes = {
+    match: ['/vue']
+  }
   config.vueTokenCheck = {
     match: ['/vue']
   }
@@ -49,6 +52,10 @@ module.exports = (appInfo) => {
     vueJwt: {
       secret: 'VUE_TOKEN_2021',
       secretRef: 'VUE_TOKEN_2021_REFRESH'
+    },
+    vueAes: {
+      isDecRequest: false,
+      isEncResponse: false
     },
     wechatInfo: require('./lib/wechatInfo.js')
   }
