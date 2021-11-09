@@ -35,6 +35,13 @@ module.exports = {
       result: param
     }
   },
+  // token 过期
+  tokenExpErr(param) {
+    this.body = {
+      code: 4001,
+      result: param
+    }
+  },
   // common
   JoiCom(val) {
     return this.validate(this.app.validator.commonVfy[val](this.request.body)).value

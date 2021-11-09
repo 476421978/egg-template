@@ -10,6 +10,7 @@ class Vue3IndexController extends Controller {
     const { config } = app
     const { jwtServer, vueUser } = service
     const params = this.ctx.JoiVue('Login')
+    if (!params) return
 
     try {
       const user = await vueUser.login(params)
@@ -31,16 +32,27 @@ class Vue3IndexController extends Controller {
   }
 
   // 重新刷新token接口
-  async UpdateToken() {
-    const { ctx } = this
+  async RefreshToken() {
+    const { ctx, app, service } = this
+    const { config } = app
+    const { jwtServer, vueUser } = service
+    const params = this.ctx.JoiVue('RefreshToken')
 
-    const Token = jwtServer.createToken(params.account, config.vueJwt.secret)
-    const RefToken = jwtServer.createToken(params.account, config.vueJwt.secret, 86400)
+    if (!params) return
+    try {
+      const user = await vueUser.findOne({ account: params.account })
+      if (!user) throw '找不到用户'
 
-    ctx.success({
-      token: Token,
-      refToken: RefToken
-    })
+      const Token = jwtServer.createToken(user.id, config.vueJwt.secret)
+      const RefToken = jwtServer.createToken(user.id, config.vueJwt.secret, 86400)
+
+      ctx.success({
+        token: Token,
+        refToken: RefToken
+      })
+    } catch (error) {
+      ctx.fail(error)
+    }
   }
 
   // 获取静态数据

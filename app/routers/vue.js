@@ -17,4 +17,7 @@ module.exports = ({ router, controller, middleware }) => {
   post('/update_user', index.UpdateUser)
   post('/get_user', index.GetUser)
   post('/get_user_list', index.GetUserList)
+
+  // 刷新Token
+  post('/refresh_token', index.RefreshToken)
 }

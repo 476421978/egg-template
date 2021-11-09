@@ -15,6 +15,12 @@ module.exports = (app) => {
           password: Joi.string().required()
         })
       },
+      // 刷新Token
+      RefreshToken: (body) => {
+        return Joi.object(body).keys({
+          account: Joi.string().required()
+        })
+      },
       // 创建用户
       createUser: (body) => {
         return Joi.object(body).keys({

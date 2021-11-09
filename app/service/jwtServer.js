@@ -24,6 +24,26 @@ class JwtServer extends Service {
     )
     return Token
   }
+
+  // 解密Token
+  async decToken(token) {
+    const { ctx, app } = this
+    const { jwt, config } = app
+    try {
+      const decode = await jwt.verify(token, config.vueJwt.secret)
+      if (!decode) return
+      // 全局解密出用户Id，设置全局变量
+      return decode.uid
+    } catch (e) {
+      // 令牌过期 返回独特
+      if (e.message === 'jwt expired') {
+        ctx.tokenExpErr(e)
+      } else {
+        // 其他都归结到请求头
+        ctx.headErr(e)
+      }
+    }
+  }
 }
 
 module.exports = JwtServer
