@@ -34,12 +34,15 @@ module.exports = (appInfo) => {
 
   // add your middleware config here
   // 开启全局中间件
-  config.middleware = ['vueAes', 'vueTokenCheck']
+  config.middleware = ['vueAes', 'vueTokenCheck', 'vueSign']
   // 指定匹配路由
   config.vueAes = {
     match: ['/vue']
   }
   config.vueTokenCheck = {
+    match: ['/vue']
+  }
+  config.vueSign = {
     match: ['/vue']
   }
 
@@ -57,6 +60,7 @@ module.exports = (appInfo) => {
       isDecRequest: false,
       isEncResponse: false
     },
+    vueSignScript: 'Vue3',
     wechatInfo: require('./lib/wechatInfo.js')
   }
 

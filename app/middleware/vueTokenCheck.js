@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 'use strict'
-//  除外
 const excepts = ['/vue/vue_login', '/vue/refresh_token']
-
+// token检查
 module.exports = (options) => {
   return async function (ctx, next) {
     const { app, service } = ctx
@@ -14,10 +13,6 @@ module.exports = (options) => {
       await next()
       return
     }
-
-    // console.log('url-->>>', url)
-    // console.log('headers-->>>', headers)
-    // console.log('body-->>>', body)
 
     try {
       // 检查token 获取用户Id

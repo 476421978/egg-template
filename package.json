@@ -22,6 +22,7 @@
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^6.0.0",
     "js-sha256": "^0.9.0",
+    "lodash": "^4.17.21",
     "mysql2": "^2.2.5",
     "node-rsa": "^1.1.1",
     "string-random": "^0.1.3",

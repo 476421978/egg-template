@@ -38,16 +38,34 @@ module.exports = {
   // token 过期
   tokenExpErr(param) {
     this.body = {
-      code: 4001,
+      code: 4002,
       result: param
     }
   },
   // common
   JoiCom(val) {
-    return this.validate(this.app.validator.commonVfy[val](this.request.body)).value
+    try {
+      return this.validate(this.app.validator.commonVfy[val]).value
+    } catch (error) {
+      this.failParams(error.details)
+      return false
+    }
   },
   // vue
   JoiVue(val) {
-    return this.validate(this.app.validator.vueVfy[val](this.request.body)).value
+    try {
+      return this.validate(this.app.validator.vueVfy[val]).value
+    } catch (error) {
+      this.failParams(error.details)
+      return false
+    }
+  },
+  JoiCustom(val, params) {
+    try {
+      return this.validate(this.app.validator.vueVfy[val], params).value
+    } catch (error) {
+      this.failParams(error.details)
+      return false
+    }
   }
 }
