@@ -1,10 +1,10 @@
 /* eslint valid-jsdoc: "off" */
 
 'use strict'
-
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
+const path = require('path')
 module.exports = (appInfo) => {
   /**
    * built-in config
@@ -96,6 +96,17 @@ module.exports = (appInfo) => {
       // 反而一个名为 deletedAt 的特殊列会将其值设置为该删除请求的时间戳
       paranoid: true
     }
+  }
+
+  // 静态资源配置
+  config.static = {
+    maxAge: 31536000,
+    prefix: '/public/',
+    dir: path.join(appInfo.baseDir, 'app/public'),
+    dynamic: true,
+    preload: false,
+    buffer: false,
+    maxFiles: 1000
   }
 
   return {

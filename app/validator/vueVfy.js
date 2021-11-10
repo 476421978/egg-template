@@ -1,5 +1,5 @@
 /**
- *  使用方法
+ *  使用方法 默认 ctx.request.body
  *  const params = this.ctx.JoiVue('GetUserIdentity')
  *  if (!params) return
  */
@@ -7,7 +7,7 @@
 module.exports = (app) => {
   const Joi = app.Joi
   return {
-    // 登录 默认 ctx.request.body
+    // 登录
     Login: Joi.object().keys({
       account: Joi.string().required(),
       password: Joi.string().required()

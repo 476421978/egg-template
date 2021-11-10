@@ -60,6 +60,7 @@ module.exports = {
       return false
     }
   },
+  // 自定义body
   JoiCustom(val, params) {
     try {
       return this.validate(this.app.validator.vueVfy[val], params).value
