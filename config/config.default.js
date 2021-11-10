@@ -60,8 +60,7 @@ module.exports = (appInfo) => {
       isDecRequest: false,
       isEncResponse: false
     },
-    vueSignScript: 'Vue3',
-    wechatInfo: require('./lib/wechatInfo.js')
+    vueSignScript: 'Vue3'
   }
 
   // csrf 安全
