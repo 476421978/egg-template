@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 'use strict'
-const excepts = ['/vue/vue_login', '/vue/refresh_token']
+const excepts = ['/mina/dec_user_info', '/mina/refresh_token']
 // token检查
 module.exports = (options) => {
   return async function (ctx, next) {
-    const { app, service } = ctx
-    const { jwt, config } = app
-    const { url, headers, body } = ctx.request
-    const { vueUser, jwtServer } = service
+    const { service } = ctx
+    const { url, headers } = ctx.request
+    const { wxUserInfo, jwtServer } = service
+
     // 排除特定路由
     if (excepts.includes(url)) {
       await next()
@@ -24,8 +24,8 @@ module.exports = (options) => {
       if (!UID) return
 
       // 查找用户判断权限
-      ctx.vueUserId = UID
-      const resUser = await vueUser.findOne({ id: UID })
+      ctx.minaUserId = UID
+      const resUser = await wxUserInfo.findOne({ id: UID })
       if (!resUser) throw '找不到用户'
     } catch (error) {
       ctx.headErr(error)

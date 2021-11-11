@@ -30,7 +30,7 @@ class JwtServer extends Service {
     const { ctx, app } = this
     const { jwt, config } = app
     try {
-      const decode = await jwt.verify(token, config.vueJwt.secret)
+      const decode = await jwt.verify(token, config.minaJwt.secret)
       if (!decode) return
       // 全局解密出用户Id，设置全局变量
       return decode.uid

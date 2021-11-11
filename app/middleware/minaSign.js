@@ -6,7 +6,7 @@ const qs = require('qs')
 const excepts = ['/home/login']
 module.exports = (options) => {
   return async function (ctx, next) {
-    const { vueSignScript } = ctx.app.config
+    const { minaSignScript } = ctx.app.config
     const { headers } = ctx.request
 
     const signBody = {

@@ -33,34 +33,32 @@ module.exports = (appInfo) => {
   config.keys = appInfo.name + '_1626837537627_1137'
 
   // add your middleware config here
+  config.middleware = ['minaTokenCheck']
   // 开启全局中间件
-  config.middleware = ['vueAes', 'vueTokenCheck', 'vueSign']
-  // 指定匹配路由
-  config.vueAes = {
-    match: ['/vue']
+  // config.middleware = ['minaAes', 'minaTokenCheck', 'minaSign']
+  // // 指定匹配路由
+  // config.minaAes = {
+  //   match: ['/mina']
+  // }
+  config.minaTokenCheck = {
+    match: ['/mina']
   }
-  config.vueTokenCheck = {
-    match: ['/vue']
-  }
-  config.vueSign = {
-    match: ['/vue']
-  }
+  // config.minaSign = {
+  //   match: ['/mina']
+  // }
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
     minaJwt: {
-      secret: 'S_MINA_TOKEN_2021'
+      secret: 'MINA_TOKEN_2021',
+      secretRef: 'MINA_TOKEN_2021_REFRESH'
     },
-    vueJwt: {
-      secret: 'VUE_TOKEN_2021',
-      secretRef: 'VUE_TOKEN_2021_REFRESH'
-    },
-    vueAes: {
+    minaAes: {
       isDecRequest: false,
       isEncResponse: false
     },
-    vueSignScript: 'Vue3',
+    minaSignScript: 'Vue3',
     wechatInfo: require('./lib/wechatInfo.js')
   }
 

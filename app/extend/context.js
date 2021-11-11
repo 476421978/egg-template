@@ -51,10 +51,10 @@ module.exports = {
       return false
     }
   },
-  // vue
-  JoiVue(val) {
+  // wepy
+  JoiMina(val) {
     try {
-      return this.validate(this.app.validator.vueVfy[val]).value
+      return this.validate(this.app.validator.minaVfy[val]).value
     } catch (error) {
       this.failParams(error.details)
       return false

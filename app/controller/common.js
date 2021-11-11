@@ -4,26 +4,6 @@ const Controller = require('egg').Controller
 const fs = require('fs')
 const path = require('path')
 class HomeController extends Controller {
-  // 登录签发token
-  async Login() {
-    const { ctx, app } = this
-    const { jwt } = app
-    try {
-      const minaToken = jwt.sign(
-        {
-          account: 'mina'
-        },
-        app.config.minaJwt.secret,
-        {
-          expiresIn: '24h'
-        }
-      )
-      ctx.success(minaToken)
-    } catch (error) {
-      ctx.fail(error)
-    }
-  }
-
   // 上传文件
   async Upload() {
     const stream = await this.ctx.getFileStream()

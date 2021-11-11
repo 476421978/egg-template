@@ -3,7 +3,7 @@ const CryptoJS = require('../utils/cryptoJs/aes_util')
 // Aes加密解密
 module.exports = (options) => {
   return async function (ctx, next) {
-    const { isDecRequest, isEncResponse } = ctx.app.config.vueAes
+    const { isDecRequest, isEncResponse } = ctx.app.config.minaAes
     // aes 尝试解密 解密成功则替换body
     if (isDecRequest) {
       try {
