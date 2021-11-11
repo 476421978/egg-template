@@ -61,7 +61,9 @@ module.exports = (appInfo) => {
       isEncResponse: false
     },
     minaSignScript: 'Vue3',
-    wechatInfo: require('./lib/wechatInfo.js')
+    wechatInfo: require('./lib/wechatInfo.js'),
+    // 保存路径为工程路径下`logs/prod/app`// 支付回调
+    notifyUrl: 'xxxxxxxxxx'
   }
 
   // csrf 安全

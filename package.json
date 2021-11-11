@@ -10,7 +10,6 @@
     "@fidm/x509": "^1.2.1",
     "axios": "^0.21.1",
     "crypto-js": "^4.1.1",
-    "crypto-random-string": "^4.0.0",
     "dayjs": "^1.10.7",
     "egg": "^2.15.1",
     "egg-cors": "^2.2.3",
