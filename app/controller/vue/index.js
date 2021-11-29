@@ -17,12 +17,10 @@ class Vue3IndexController extends Controller {
       if (!user) throw '找不到用户'
 
       const Token = jwtServer.createToken(user.id, config.vueJwt.secret)
-
       const RefToken = jwtServer.createToken(user.id, config.vueJwt.secret, 86400)
 
       ctx.success({
-        ...params,
-        web_auth_arr: ['home', 'user'],
+        ...user.dataValues,
         token: Token,
         refToken: RefToken
       })
@@ -129,22 +127,19 @@ class Vue3IndexController extends Controller {
     if (!params) return
 
     try {
-      const res = await vueUser.findAndCountAll(
-        {
-          account: {
-            [Op.like]: `%${params.search_txt}%`
-          }
-        },
-        {
-          offset: (params.pages_size - 1) * params.pages_num,
-          limit: params.pages_num
+      let whereInfo = {}
+      if (params.search_txt) {
+        whereInfo.account = {
+          [Op.like]: `%${params.search_txt}%`
         }
-      )
+      }
+      const res = await vueUser.findAndCountAll(whereInfo, {
+        offset: (params.pages_size - 1) * params.pages_num,
+        limit: params.pages_num
+      })
 
       ctx.success(res)
-    } catch (error) {
-      console.log('error-->>>>', error)
-    }
+    } catch (error) {}
   }
 }
 

@@ -1,19 +1,13 @@
 'use strict'
 const Service = require('egg').Service
-class VueUserServer extends Service {
+class VueRoleServer extends Service {
   // 构造函数
   constructor(props) {
     super(props)
-    const { VueUser, VueRole } = this.app.model
+    const { VueRole } = this.app.model
     // 常用配置
     this.state = {
-      model: VueUser,
-      include: [
-        // 关联权限表
-        {
-          model: VueRole
-        }
-      ]
+      model: VueRole
     }
     props.request.commonServer(this)
   }
@@ -21,8 +15,8 @@ class VueUserServer extends Service {
   // 登录
   async login(params) {
     const { ctx, app, service } = this
-    const { vueUser } = service
-    const user = await vueUser.findOne({
+    const { VueRole } = service
+    const user = await VueRole.findOne({
       account: params.account,
       password: params.password
     })
@@ -30,4 +24,4 @@ class VueUserServer extends Service {
   }
 }
 
-module.exports = VueUserServer
+module.exports = VueRoleServer

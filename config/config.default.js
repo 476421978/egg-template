@@ -87,8 +87,6 @@ module.exports = (appInfo) => {
     define: {
       // 使用自己配置的表名，避免sequelize自动将表名转换为复数
       freezeTableName: true,
-      // 字段以下划线（_）来分割（默认是驼峰命名风格）
-      underscored: true,
       // 默认创造created_at updated_at 时间字段
       timestamps: true,
       // Sequelize 支持 paranoid 表的概念.
