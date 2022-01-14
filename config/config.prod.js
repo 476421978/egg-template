@@ -28,7 +28,7 @@ module.exports = (appInfo) => {
   config.keys = appInfo.name + '_1626837537627_8888'
 
   config.logger = {
-    level: 'INFO', // 避免记录数据库执行语句
+    level: 'ERROR', // 避免记录数据库执行语句
     dir: path.join(__dirname, '../logs/prod'), // 保存路径为工程路径下`logs/prod/app`
     appLogName: `${appInfo.name}-web.log`,
     coreLogName: 'egg-web.log',

@@ -78,11 +78,11 @@ module.exports = (appInfo) => {
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-    database: 'egg_template',
+    database: 'test_db',
     host: '127.0.0.1',
     port: 3306,
-    username: 'root',
-    password: '123456',
+    username: 'test1',
+    password: 'test1',
     timezone: '+08:00', // 使用东八区 慢几小时就加几小时，快则减
     define: {
       // 使用自己配置的表名，避免sequelize自动将表名转换为复数

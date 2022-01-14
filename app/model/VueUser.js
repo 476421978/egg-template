@@ -21,10 +21,6 @@ module.exports = (app) => {
       password: {
         type: STRING
       },
-      age: {
-        type: INTEGER(3),
-        defaultValue: 18
-      },
       sex: {
         // 0 女 1男
         type: INTEGER(1),

@@ -6,7 +6,7 @@ module.exports = (app) => {
     if (app.config.env === 'local' || app.config.env === 'unittest') {
       // await app.model.sync({ force: true }) // 删除重建
       // await app.model.sync({ alter: true }) // 较数据库表和模型 修改数据库表匹配模型
-      // await app.model.sync() // 同步模型到数据库，存在则不操作，不存在则创建
+      await app.model.sync() // 同步模型到数据库，存在则不操作，不存在则创建
       console.log('Models has been sync done....')
     }
   })
